@@ -1,0 +1,21 @@
+/*
+Write a method that reverses the digits of given decimal number. Example: 256 --> 652
+*/
+using System;
+
+class ReverseDigits
+{
+	public static void Reverse(decimal num)
+	{
+		string reversed = num.ToString();
+        char[] array = reversed.ToCharArray();
+        Array.Reverse(array);
+        Console.WriteLine(array);
+	}
+	public static void Main()
+	{
+		Console.WriteLine("Write a decimal number:");
+        decimal number = decimal.Parse(Console.ReadLine());
+        Reverse(number);
+	}
+}
