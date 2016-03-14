@@ -1,0 +1,127 @@
+/*
+Write a method that adds two polynomials. Represent them as arrays of their coefficients as in the example below:
+		x2 + 5 = 1x2 + 0x + 5 -->5 0 1
+*/
+using System;
+
+class Polynomials
+{
+    private static void Print(decimal[] array)
+    {
+        for (int i = array.Length - 1; i >= 0; i--) 
+            if (i<=0)
+            {
+            Console.Write(array[i] + "*x^" + i + "\n" );
+            }
+            else 
+            {
+                Console.Write(array[i] + "*x^" + i + " + ");
+            }
+    }
+    private static void SumPolynomials(decimal[] first, decimal[] second, decimal[] result)
+    {
+        int lenght = 0;
+        int smaller = 0;
+        if (first.Length > second.Length)
+        {
+            lenght = second.Length;
+            smaller = 2;
+        }
+        else
+        {
+            lenght = first.Length;
+            smaller = 1;
+        }
+        for (int i = 0; i < lenght; i++)
+        {
+            result[i] = first[i] + second[i];
+        }
+        for (int i = lenght; i < result.Length; i++)
+        {
+            if (smaller == 1)
+            {
+                result[i] = second[i];
+            }
+            else
+            {
+                result[i] = first[i];
+            }
+        }
+    }
+    private static void SubstractionPolynomials(decimal[] first, decimal[] second, decimal[] result)
+    {
+        int lenght = 0;
+        int smaller = 0;
+        if (first.Length > second.Length)
+        {
+            lenght = second.Length;
+            smaller = 2;
+        }
+        else
+        {
+            lenght = first.Length;
+            smaller = 1;
+        }
+        for (int i = 0; i < lenght; i++)
+        {
+            result[i] = first[i] - second[i];
+        }
+        for (int i = lenght; i < result.Length; i++)
+        {
+            if (smaller == 1)
+            {
+                result[i] = second[i];
+            }
+            else
+            {
+                result[i] = first[i];
+            }
+        }
+    }
+    private static void MultiplyPolynomials(decimal[] first, decimal[] second, decimal[] result)
+    {
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i] = 0;
+        }
+        for (int i = 0; i < first.Length; i++)
+        {
+            for (int j = 0; j < second.Length; j++)
+            {
+                int pos = i + j;
+                result[pos] = result[pos]+(first[i] * second[j]);
+            }
+        }
+    }
+    static void Main()
+    {
+        decimal[] pol1 = { 5, 1 };
+        Console.Write("The first polynomial is ");
+        Print(pol1);
+        decimal[] pol2 = { 5, 10, 1 };
+        Console.Write("The second polynomial is ");
+        Print(pol2);
+        int lenght = 0;
+        if (pol1.Length > pol2.Length)
+        {
+            lenght = pol1.Length;
+        }
+        else
+        {
+            lenght = pol2.Length;
+        }
+
+        decimal[] result = new decimal[lenght];
+        Console.WriteLine();
+        SumPolynomials(pol1, pol2, result);
+        Console.Write("The sum of the two polynomials is: ");
+        Print(result);
+        SubstractionPolynomials(pol1, pol2, result);
+        Console.Write("The substraction of the two polynomials is: ");
+        Print(result);
+        decimal[] multiply = new decimal[pol1.Length + pol2.Length];
+        MultiplyPolynomials(pol1, pol2, multiply);
+        Console.Write("The multiplication of the two polynomials is: ");
+        Print(multiply);
+    }
+}
