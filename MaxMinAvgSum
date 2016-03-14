@@ -1,0 +1,64 @@
+/*
+Write methods to calculate minimum, maximum, average, sum and product of given set of integer numbers. Use variable number of arguments.
+*/
+using System;
+
+class MaxMinAvgSum
+{
+    private static double Max(params double[] array)
+    {
+        double big = double.MinValue;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] >= big)
+            {
+                big = array[i];
+            }
+        }
+        return big;
+    }
+    private static double Min(params double[] array)
+    {
+        double low = double.MaxValue;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] <= low)
+            {
+                low = array[i];
+            }
+        }
+        return low;
+    }
+    private static double Average(params double[] array)
+    {
+        double average = Sum(array) / array.Length;
+        return average;
+    }
+    private static double Sum(params double[] array)
+    {
+        double sum = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            sum = sum + array[i];
+        }
+        return sum;
+    }
+    private static double Product(params double[] array)
+    {
+        double product = 1;
+        for (int i = 0; i < array.Length; i++)
+        {
+            product = product * array[i];
+        }
+        return product;
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Min={0}", Min(10, 6, 3, 8));
+        Console.WriteLine("Max={0}", Max(10, 6, 3, 8));
+        Console.WriteLine("Avg={0}", Average(10, 6, 3, 8));
+        Console.WriteLine("Sum={0}", Sum(10, 6, 3, 8));
+        Console.WriteLine("Product={0}", Product(10, 6, 3, 8));
+    }
+}
