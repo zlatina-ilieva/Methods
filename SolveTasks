@@ -1,0 +1,101 @@
+/*
+Write a program that can solve these tasks:
+Reverses the digits of a number
+Calculates the average of a sequence of integers
+Solves a linear equation a * x + b = 0
+		Create appropriate methods.
+		Provide a simple text-based menu for the user to choose which task to solve.
+		Validate the input data:
+The decimal number should be non-negative
+The sequence should not be empty
+a should not be equal to 0
+*/
+using System;
+
+class SolveTasks
+{
+    private static void InputReverseDigits()
+    {
+        Console.WriteLine("Enter number:");
+        int n = int.Parse(Console.ReadLine());
+        if (n >= 0)
+        {
+            ReverseDigits(n);
+        }
+        else
+        {
+            Console.WriteLine("The number should be positive.");
+        }
+    }
+    private static void ReverseDigits(decimal num)
+    {
+        string reversed = num.ToString();
+        char[] array = reversed.ToCharArray();
+        Array.Reverse(array);
+        Console.WriteLine(array);
+    }
+    private static void InputAverage()
+    {
+        Console.WriteLine("Enter size of array:");
+        int[] array = new int[int.Parse(Console.ReadLine())];
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = int.Parse(Console.ReadLine());
+        }
+        if (array.Length > 0)
+        {
+            Console.WriteLine("GetAverage: {0}", Average(array));
+        }
+        else
+        {
+            Console.WriteLine("The array should have elements.");
+        }
+    }
+    private static double Average(int[] array)
+    {
+        int sum = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            sum=sum + array[i];
+        }
+        return (double)sum / array.Length;
+    }
+    private static void InputEquation()
+    {
+        Console.WriteLine("Enter a: ");
+        int a = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter b: ");
+        int b = int.Parse(Console.ReadLine());
+        if (a != 0)
+        {
+            Console.WriteLine("CalculateEquation: {0}",  LinearEquation(a, b));
+        }
+        else
+        {
+            Console.WriteLine("a should not be zero.");
+        }
+    }
+    private static double LinearEquation(int a, int b)
+    {
+        return (double)-b / a;
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("                    MENU                        "); 
+        Console.WriteLine("+----------------------------------------------+");
+        Console.WriteLine("|1. Reverse the digits of a number.            |");
+        Console.WriteLine("|2. Calculate the average of a sequence of int.|");
+        Console.WriteLine("|3. Solve a linear equation a * x + b = 0 .    |");
+        Console.WriteLine("+----------------------------------------------+");
+        Console.Write("Choose a number: ");
+        int input = int.Parse(Console.ReadLine());
+        switch (input)
+        {
+            case 1: InputReverseDigits(); break;
+            case 2: InputAverage(); break;
+            case 3: InputEquation(); break;
+            default: Console.WriteLine("You can choose \"1\", \"2\" or \"3\" "); break;
+        }
+    }
+}
